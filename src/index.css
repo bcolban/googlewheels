@@ -1,0 +1,115 @@
+:root {
+  font-family: 'Roboto', 'Segoe UI', system-ui, Arial, sans-serif;
+  color-scheme: light;
+  --gw-shadow: 0 1px 3px rgba(60, 64, 67, 0.18), 0 4px 12px rgba(60, 64, 67, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* Leaflet haritasını tam alana yay */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #e8eaed;
+  font: inherit;
+}
+
+/* Tile katmanını ekran okuyuculardan gizle (gürültüyü azalt) */
+.leaflet-tile-pane {
+  /* görsel kalır; aria-hidden MapView'de container'a uygulanır */
+}
+
+/* --- Özel harita pini (damla biçimli) --- */
+.gw-pin-wrap {
+  background: transparent;
+  border: 0;
+}
+
+.gw-pin {
+  width: 34px;
+  height: 44px;
+  position: relative;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  cursor: pointer;
+}
+
+.gw-pin__body {
+  width: 34px;
+  height: 34px;
+  background: var(--pin, #1a73e8);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+.gw-pin__body svg {
+  transform: rotate(45deg);
+}
+
+.gw-pin--elevator .gw-pin__body {
+  border-radius: 50%;
+}
+
+/* Klavye odağı pinlerde görünür olsun */
+.leaflet-marker-icon:focus-visible {
+  outline: 3px solid #4285f4;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Marker kümeleri (markercluster) Google-vari görünüm */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background: rgba(26, 115, 232, 0.25);
+}
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background: #1a73e8;
+  color: #fff;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+/* Hareketi azalt tercihi */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .leaflet-fade-anim .leaflet-tile {
+    transition: none !important;
+  }
+}
+
+/* Ekran okuyucu için görünmez ama okunur metin */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

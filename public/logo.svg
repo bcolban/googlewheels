@@ -1,0 +1,16 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GoogleWheels logo">
+  <defs>
+    <linearGradient id="pinGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4285F4"/>
+      <stop offset="1" stop-color="#1a73e8"/>
+    </linearGradient>
+  </defs>
+  <!-- Konum iğnesi (pin) -->
+  <path d="M64 8C41 8 22 26.7 22 49.5 22 81 64 120 64 120s42-39 42-70.5C106 26.7 87 8 64 8z" fill="url(#pinGrad)"/>
+  <circle cx="64" cy="49" r="30" fill="#ffffff"/>
+  <!-- Tekerlekli sandalye sembolü (Google renkleri) -->
+  <circle cx="60" cy="29" r="6" fill="#EA4335"/>
+  <path d="M52 39c0-2.2 1.8-4 4-4s4 1.8 4 4v9h12c2.2 0 4 1.8 4 4s-1.8 4-4 4H62l4 8" stroke="#FBBC05" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="60" cy="58" r="12.5" stroke="#34A853" stroke-width="5" fill="none"/>
+  <circle cx="60" cy="58" r="2.5" fill="#34A853"/>
+</svg>

@@ -1,0 +1,114 @@
+{
+  "app": {
+    "name": "GoogleWheels",
+    "tagline": "Erişilebilir Harita Katmanı",
+    "demoBadge": "DEMO"
+  },
+  "search": {
+    "placeholder": "Yer veya adres ara…",
+    "directions": "Yol tarifi"
+  },
+  "layer": {
+    "title": "Erişilebilirlik katmanı",
+    "on": "Açık",
+    "off": "Kapalı",
+    "showReports": "Engel bildirimlerini göster",
+    "showRoute": "Yaşayan rotayı göster"
+  },
+  "route": {
+    "title": "Yaşayan Rota",
+    "subtitle": "Yol, fiziksel erişilebilirliğe göre renklenir",
+    "from": "Başlangıç",
+    "to": "Varış",
+    "pick": "Rota seç",
+    "distance": "{{km}} km",
+    "duration": "{{min}} dk (tekerlekli sandalye)",
+    "legendTitle": "Rota açıklaması",
+    "elevatorsOnRoute": "Rota üzerindeki asansörler / geçişler",
+    "verifyCta": "Durumu doğrula"
+  },
+  "severity": {
+    "green": "Tam erişilebilir",
+    "yellow": "Dikkatli geçin",
+    "red": "Riskli / geçilemez",
+    "greenDesc": "Düz zemin, standart rampa, engelsiz geçiş.",
+    "yellowDesc": "Parke taşı, hafif eğim veya dar geçiş olabilir.",
+    "redDesc": "Tekerlekli sandalye ile geçiş riskli ya da imkânsız."
+  },
+  "report": {
+    "title": "Engel bildir",
+    "subtitle": "Yaşadığın engeli paylaş, başkalarına yol göster",
+    "type": "Engel türü",
+    "severity": "Erişilebilirlik durumu",
+    "noteLabel": "Not (isteğe bağlı)",
+    "notePlaceholder": "Örn: Sandalyesi küçük olanlar geçebilir, kenardan rampa var…",
+    "locationHint": "Konumu haritaya dokunarak seç ya da haritanın ortasını kullan",
+    "useMapCenter": "Haritanın ortasını kullan",
+    "submit": "Bildirimi gönder",
+    "cancel": "Vazgeç",
+    "success": "Teşekkürler! Bildirimin haritaya eklendi.",
+    "reportedAgo": "{{time}} bildirildi",
+    "addButton": "Engel bildir"
+  },
+  "types": {
+    "roadwork": "Yol çalışması",
+    "pothole": "Çukur / bozuk zemin",
+    "elevator_broken": "Bozuk asansör",
+    "parked_car": "Hatalı park",
+    "steep": "Dik eğim",
+    "cobblestone": "Parke taşı",
+    "no_ramp": "Rampa yok / yüksek bordür",
+    "accessible": "Tam erişilebilir"
+  },
+  "elevator": {
+    "dialogTitle": "Asansör hâlâ çalışıyor mu?",
+    "dialogBody": "{{name}} noktasına yaklaşıyorsun. Buradaki asansörün durumu diğer kullanıcılara yardımcı olur.",
+    "working": "Asansör çalışıyor",
+    "broken": "Arıza bildir",
+    "lastReportWorking": "{{time}} çalıştığı bildirildi",
+    "lastReportBroken": "{{time}} arızalı bildirildi",
+    "thanksWorking": "Teşekkürler! Çalışıyor olarak işaretlendi.",
+    "thanksBroken": "Bildirildi. Diğer kullanıcılar uyarılacak."
+  },
+  "a11y": {
+    "title": "Erişilebilirlik ayarları",
+    "fontSize": "Yazı boyutu",
+    "highContrast": "Yüksek kontrast",
+    "language": "Dil",
+    "small": "Küçük",
+    "normal": "Normal",
+    "large": "Büyük",
+    "open": "Erişilebilirlik ayarlarını aç",
+    "mapRegion": "İnteraktif erişilebilirlik haritası",
+    "reportMarker": "Engel bildirimi: {{title}}",
+    "elevatorMarker": "Asansör noktası: {{name}}"
+  },
+  "data": {
+    "live": "Canlı (paylaşımlı) veri",
+    "offline": "Yerel demo verisi",
+    "liveTip": "Bildirimler tüm kullanıcılarla paylaşılır",
+    "offlineTip": "Supabase yapılandırılmadı — veriler bu tarayıcıda saklanıyor"
+  },
+  "places": {
+    "taksim": "Taksim Meydanı",
+    "galata": "Galata Kulesi",
+    "sultanahmet": "Sultanahmet",
+    "eminonu": "Eminönü",
+    "sishane": "Şişhane",
+    "ataUstGecit": "Ata Üst Geçidi",
+    "kapalicarsi": "Kapalıçarşı"
+  },
+  "intro": {
+    "title": "GoogleWheels'e hoş geldin",
+    "body": "Bu demo, tekerlekli sandalye kullanıcıları için tasarlanmış kalabalık-kaynaklı bir erişilebilirlik harita katmanıdır. Rotalar fiziksel duruma göre renklenir, engelleri bildirebilir ve asansör durumlarını doğrulayabilirsin.",
+    "tryRoute": "Örnek rotayı gör",
+    "start": "Haritayı keşfet",
+    "feature1": "Yaşayan rotalar (yeşil / sarı / kırmızı)",
+    "feature2": "Anlık engel bildirimi",
+    "feature3": "Asansör doğrulama"
+  },
+  "footer": {
+    "attribution": "Harita verisi © OpenStreetMap katkıcıları, kartografya © CARTO",
+    "thesis": "İSZÜ Görsel İletişim Tasarımı bitirme tezi konseptine dayanır"
+  }
+}

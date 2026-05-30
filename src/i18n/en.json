@@ -1,0 +1,114 @@
+{
+  "app": {
+    "name": "GoogleWheels",
+    "tagline": "Accessible Map Layer",
+    "demoBadge": "DEMO"
+  },
+  "search": {
+    "placeholder": "Search a place or address…",
+    "directions": "Directions"
+  },
+  "layer": {
+    "title": "Accessibility layer",
+    "on": "On",
+    "off": "Off",
+    "showReports": "Show obstacle reports",
+    "showRoute": "Show living route"
+  },
+  "route": {
+    "title": "Living Route",
+    "subtitle": "The path is colored by physical accessibility",
+    "from": "From",
+    "to": "To",
+    "pick": "Pick a route",
+    "distance": "{{km}} km",
+    "duration": "{{min}} min (wheelchair)",
+    "legendTitle": "Route legend",
+    "elevatorsOnRoute": "Elevators / crossings on route",
+    "verifyCta": "Verify status"
+  },
+  "severity": {
+    "green": "Fully accessible",
+    "yellow": "Proceed with care",
+    "red": "Risky / impassable",
+    "greenDesc": "Flat surface, standard ramp, step-free passage.",
+    "yellowDesc": "May have cobblestones, mild slope or narrow passage.",
+    "redDesc": "Risky or impossible to pass in a wheelchair."
+  },
+  "report": {
+    "title": "Report an obstacle",
+    "subtitle": "Share what you faced, guide others",
+    "type": "Obstacle type",
+    "severity": "Accessibility status",
+    "noteLabel": "Note (optional)",
+    "notePlaceholder": "e.g. Narrow wheelchairs can pass, there is a side ramp…",
+    "locationHint": "Tap the map to pick a spot, or use the map center",
+    "useMapCenter": "Use map center",
+    "submit": "Send report",
+    "cancel": "Cancel",
+    "success": "Thanks! Your report was added to the map.",
+    "reportedAgo": "reported {{time}}",
+    "addButton": "Report obstacle"
+  },
+  "types": {
+    "roadwork": "Roadwork",
+    "pothole": "Pothole / broken surface",
+    "elevator_broken": "Broken elevator",
+    "parked_car": "Illegally parked car",
+    "steep": "Steep slope",
+    "cobblestone": "Cobblestone",
+    "no_ramp": "No ramp / high kerb",
+    "accessible": "Fully accessible"
+  },
+  "elevator": {
+    "dialogTitle": "Is the elevator still working?",
+    "dialogBody": "You are approaching {{name}}. The elevator status here helps other users.",
+    "working": "Elevator is working",
+    "broken": "Report a fault",
+    "lastReportWorking": "reported working {{time}}",
+    "lastReportBroken": "reported broken {{time}}",
+    "thanksWorking": "Thanks! Marked as working.",
+    "thanksBroken": "Reported. Other users will be warned."
+  },
+  "a11y": {
+    "title": "Accessibility settings",
+    "fontSize": "Font size",
+    "highContrast": "High contrast",
+    "language": "Language",
+    "small": "Small",
+    "normal": "Normal",
+    "large": "Large",
+    "open": "Open accessibility settings",
+    "mapRegion": "Interactive accessibility map",
+    "reportMarker": "Obstacle report: {{title}}",
+    "elevatorMarker": "Elevator point: {{name}}"
+  },
+  "data": {
+    "live": "Live (shared) data",
+    "offline": "Local demo data",
+    "liveTip": "Reports are shared with all users",
+    "offlineTip": "Supabase not configured — data is stored in this browser"
+  },
+  "places": {
+    "taksim": "Taksim Square",
+    "galata": "Galata Tower",
+    "sultanahmet": "Sultanahmet",
+    "eminonu": "Eminönü",
+    "sishane": "Şişhane",
+    "ataUstGecit": "Ata Overpass",
+    "kapalicarsi": "Grand Bazaar"
+  },
+  "intro": {
+    "title": "Welcome to GoogleWheels",
+    "body": "This demo is a crowdsourced accessibility map layer designed for wheelchair users. Routes are colored by physical condition, you can report obstacles and verify elevator status.",
+    "tryRoute": "See the sample route",
+    "start": "Explore the map",
+    "feature1": "Living routes (green / yellow / red)",
+    "feature2": "Instant obstacle reporting",
+    "feature3": "Elevator verification"
+  },
+  "footer": {
+    "attribution": "Map data © OpenStreetMap contributors, cartography © CARTO",
+    "thesis": "Based on an ISZU Visual Communication Design thesis concept"
+  }
+}
