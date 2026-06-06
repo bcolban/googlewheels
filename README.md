@@ -34,9 +34,12 @@ Bu demo, o konsepti gerçekten denenebilir hâle getirir: harita üzerinde renk 
 anlık engel bildirimi ve asansör doğrulama akışı çalışır durumdadır.
 
 ### Özellikler
+- 🧭 **Kendi rotanı oluştur** — Adres/yer ara (OpenStreetMap Nominatim) veya konumunu kullan;
+  başlangıç–varış seç, gerçek yaya yol ağını izleyen rota (OSRM) anında çizilir.
 - 🟢🟡🔴 **Yaşayan Rotalar** — Rota çizgisi yolun fiziksel erişilebilirliğine göre renk değiştirir
-  (yeşil: tam erişilebilir, sarı: dikkatli geç, kırmızı: riskli/geçilemez). Renk asla tek
-  sinyal değildir; her zaman ikon ve metinle birlikte sunulur.
+  (yeşil: tam erişilebilir, sarı: dikkatli geç, kırmızı: riskli/geçilemez) — rota üzerindeki
+  **engel bildirimlerine göre otomatik renklenir**. Renk asla tek sinyal değildir; her zaman
+  ikon ve metinle birlikte sunulur.
 - 📍 **Anlık Engel Bildirimi** — İkon setiyle engel türü (yol çalışması, çukur, bozuk asansör,
   hatalı park, dik eğim, parke taşı…) seçilir, kişisel not eklenir; bildirim haritaya düşer.
 - 🛗 **Asansör Doğrulama (Yerinde Doğrulama)** — Asansörlü bir noktaya yaklaşınca _"Asansör hâlâ
@@ -88,8 +91,10 @@ elevators, illegally parked cars — and turns the map into a **solidarity platf
 help each other.
 
 ### Features
-- 🟢🟡🔴 **Living Routes** — the path is colored by physical accessibility; color is never the
-  only signal (always paired with an icon and label).
+- 🧭 **Create your own route** — search a place (OpenStreetMap Nominatim) or use your location,
+  pick start & destination, and a real pedestrian route (OSRM) is drawn instantly.
+- 🟢🟡🔴 **Living Routes** — the path is colored by physical accessibility, **automatically tinted
+  by nearby obstacle reports**; color is never the only signal (always paired with icon + label).
 - 📍 **Instant obstacle reporting** with an icon set + free-text note.
 - 🛗 **Elevator verification flow** — _"Is the elevator still working?"_ with large buttons and a
   reassuring _"reported working 5 min ago"_ micro-copy.

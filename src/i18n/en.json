@@ -8,6 +8,21 @@
     "placeholder": "Search a place or address…",
     "directions": "Directions"
   },
+  "directions": {
+    "title": "Create an accessible route",
+    "from": "From",
+    "to": "To",
+    "search": "Search a place…",
+    "myLocation": "My location",
+    "mapCenter": "Map center",
+    "create": "Create route",
+    "creating": "Calculating route…",
+    "noOptions": "No results — keep typing",
+    "typeMore": "Type at least 3 letters",
+    "error": "Could not create route, try again",
+    "geoError": "Could not get your location",
+    "coloredByReports": "Route colored by nearby obstacle reports"
+  },
   "layer": {
     "title": "Accessibility layer",
     "on": "On",

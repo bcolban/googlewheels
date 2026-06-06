@@ -14,6 +14,7 @@ import IntroDialog from './components/layout/IntroDialog'
 import RoutePanel from './components/panels/RoutePanel'
 import ReportForm from './components/panels/ReportForm'
 import LocationPicker from './components/panels/LocationPicker'
+import DirectionsPanel from './components/panels/DirectionsPanel'
 import ElevatorVerifyDialog from './components/verification/ElevatorVerifyDialog'
 
 import type { ElevatorPoint, Report, SeedRoute } from './types'
@@ -39,6 +40,7 @@ export default function App() {
   const [introOpen, setIntroOpen] = useState(true)
   const [reportOpen, setReportOpen] = useState(false)
   const [placing, setPlacing] = useState(false)
+  const [directionsOpen, setDirectionsOpen] = useState(false)
   const [elevator, setElevator] = useState<ElevatorPoint | null>(null)
   const [elevatorOpen, setElevatorOpen] = useState(false)
   const [snack, setSnack] = useState<string | null>(null)
@@ -127,14 +129,26 @@ export default function App() {
           dataMode={dataMode}
           layerOn={layerOn}
           onToggleLayer={() => setLayerOn((v) => !v)}
-          onDirections={openRoute}
+          onDirections={() => setDirectionsOpen(true)}
           fontScale={fontScale}
           onFontScale={setFontScale}
           highContrast={highContrast}
           onHighContrast={setHighContrast}
         />
 
-        {route && (
+        {directionsOpen && (
+          <DirectionsPanel
+            reports={reports}
+            mapCenter={center}
+            onClose={() => setDirectionsOpen(false)}
+            onRoute={(r) => {
+              setRoute(r)
+              setDirectionsOpen(false)
+            }}
+          />
+        )}
+
+        {route && !directionsOpen && (
           <RoutePanel
             route={route}
             refreshKey={refreshKey}

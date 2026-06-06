@@ -8,6 +8,21 @@
     "placeholder": "Yer veya adres ara…",
     "directions": "Yol tarifi"
   },
+  "directions": {
+    "title": "Erişilebilir rota oluştur",
+    "from": "Başlangıç",
+    "to": "Varış",
+    "search": "Yer ara…",
+    "myLocation": "Konumum",
+    "mapCenter": "Haritanın ortası",
+    "create": "Rota oluştur",
+    "creating": "Rota hesaplanıyor…",
+    "noOptions": "Sonuç yok — yazmaya devam et",
+    "typeMore": "En az 3 harf yaz",
+    "error": "Rota oluşturulamadı, tekrar dene",
+    "geoError": "Konum alınamadı",
+    "coloredByReports": "Rota, yakındaki engel bildirimlerine göre renklendi"
+  },
   "layer": {
     "title": "Erişilebilirlik katmanı",
     "on": "Açık",
