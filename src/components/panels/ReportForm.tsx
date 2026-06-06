@@ -14,6 +14,7 @@ import {
   IconButton,
 } from '@mui/material'
 import Close from '@mui/icons-material/Close'
+import Place from '@mui/icons-material/Place'
 import { useTranslation } from 'react-i18next'
 import type { Report, ReportType, Severity } from '../../types'
 import { ALL_TYPES, TYPE_ICON, TYPE_DEFAULT_SEVERITY, SEVERITY_ICON } from '../../lib/icons'
@@ -179,8 +180,9 @@ export default function ReportForm({ open, onClose, onSubmit, location }: Props)
           inputProps={{ maxLength: 240 }}
         />
         <Stack direction="row" spacing={0.5} sx={{ mt: 1 }} alignItems="center">
+          <Place fontSize="small" sx={{ color: '#EA4335' }} aria-hidden />
           <Typography variant="caption" color="text.secondary">
-            {t('report.locationHint')} · {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
+            {t('report.selectedLocation')}: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
           </Typography>
         </Stack>
       </DialogContent>

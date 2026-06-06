@@ -48,7 +48,11 @@
     "cancel": "Cancel",
     "success": "Thanks! Your report was added to the map.",
     "reportedAgo": "reported {{time}}",
-    "addButton": "Report obstacle"
+    "addButton": "Report obstacle",
+    "placeTitle": "Pick the obstacle location",
+    "placeHint": "Pan the map so the center marker is on the obstacle",
+    "confirmLocation": "Use this location",
+    "selectedLocation": "Selected location"
   },
   "types": {
     "roadwork": "Roadwork",

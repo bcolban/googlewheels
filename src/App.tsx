@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import { Fab, Snackbar, Alert, Box, Typography } from '@mui/material'
 import AddLocationAlt from '@mui/icons-material/AddLocationAlt'
@@ -13,6 +13,7 @@ import TopBar from './components/layout/TopBar'
 import IntroDialog from './components/layout/IntroDialog'
 import RoutePanel from './components/panels/RoutePanel'
 import ReportForm from './components/panels/ReportForm'
+import LocationPicker from './components/panels/LocationPicker'
 import ElevatorVerifyDialog from './components/verification/ElevatorVerifyDialog'
 
 import type { ElevatorPoint, Report, SeedRoute } from './types'
@@ -37,6 +38,7 @@ export default function App() {
   // Dialoglar
   const [introOpen, setIntroOpen] = useState(true)
   const [reportOpen, setReportOpen] = useState(false)
+  const [placing, setPlacing] = useState(false)
   const [elevator, setElevator] = useState<ElevatorPoint | null>(null)
   const [elevatorOpen, setElevatorOpen] = useState(false)
   const [snack, setSnack] = useState<string | null>(null)
@@ -50,8 +52,8 @@ export default function App() {
     () => localStorage.getItem('gw_contrast') === '1',
   )
 
-  // Harita merkezi (rapor konumu için)
-  const center = useRef<{ lat: number; lng: number }>({
+  // Harita merkezi (rapor konumu için) — moveend ile güncellenir
+  const [center, setCenter] = useState<{ lat: number; lng: number }>({
     lat: (ISTANBUL_CENTER as [number, number])[0],
     lng: (ISTANBUL_CENTER as [number, number])[1],
   })
@@ -105,7 +107,8 @@ export default function App() {
       <Box sx={{ position: 'fixed', inset: 0 }}>
         <MapView
           fitBounds={fitBounds}
-          onCenterChange={(lat, lng) => (center.current = { lat, lng })}
+          placing={placing}
+          onCenterChange={(lat, lng) => setCenter({ lat, lng })}
         >
           {layerOn && route && <LivingRoute route={route} />}
           {layerOn && <ReportMarkers reports={visibleReports} />}
@@ -143,23 +146,37 @@ export default function App() {
           />
         )}
 
-        {/* Engel bildir — büyük, sabit FAB */}
-        <Fab
-          variant="extended"
-          color="primary"
-          onClick={() => setReportOpen(true)}
-          sx={{
-            position: 'absolute',
-            zIndex: 1000,
-            right: 16,
-            bottom: { xs: 16, md: 24 },
-            fontWeight: 600,
-            px: 2.5,
-          }}
-        >
-          <AddLocationAlt sx={{ mr: 1 }} />
-          {t('report.addButton')}
-        </Fab>
+        {/* Engel bildir — büyük, sabit FAB (konum seçme veya form açıkken gizlenir) */}
+        {!placing && !reportOpen && (
+          <Fab
+            variant="extended"
+            color="primary"
+            onClick={() => setPlacing(true)}
+            sx={{
+              position: 'absolute',
+              zIndex: 1000,
+              right: 16,
+              bottom: { xs: 16, md: 24 },
+              fontWeight: 600,
+              px: 2.5,
+            }}
+          >
+            <AddLocationAlt sx={{ mr: 1 }} />
+            {t('report.addButton')}
+          </Fab>
+        )}
+
+        {/* Konum seçme katmanı: önce haritada yeri belirle, sonra formu aç */}
+        {placing && (
+          <LocationPicker
+            center={center}
+            onCancel={() => setPlacing(false)}
+            onConfirm={() => {
+              setPlacing(false)
+              setReportOpen(true)
+            }}
+          />
+        )}
 
         {/* Atıf / künye */}
         <Box
@@ -184,7 +201,7 @@ export default function App() {
         open={reportOpen}
         onClose={() => setReportOpen(false)}
         onSubmit={handleSubmitReport}
-        location={center.current}
+        location={center}
       />
 
       <ElevatorVerifyDialog

@@ -48,7 +48,11 @@
     "cancel": "Vazgeç",
     "success": "Teşekkürler! Bildirimin haritaya eklendi.",
     "reportedAgo": "{{time}} bildirildi",
-    "addButton": "Engel bildir"
+    "addButton": "Engel bildir",
+    "placeTitle": "Engelin yerini seç",
+    "placeHint": "Haritayı kaydırıp ortadaki işareti engelin üzerine getir",
+    "confirmLocation": "Bu konumu kullan",
+    "selectedLocation": "Seçilen konum"
   },
   "types": {
     "roadwork": "Yol çalışması",
