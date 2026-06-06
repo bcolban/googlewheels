@@ -14,6 +14,8 @@ interface Props {
   onCenterChange?: (lat: number, lng: number) => void
   /** Harita bu noktaya/sınıra uçar (rota seçilince). */
   fitBounds?: [number, number][]
+  /** Bu nokta/sayaç değişince haritayı oraya uçur (canlı konum butonu). */
+  flyTo?: { lat: number; lng: number; token: number } | null
   /** Tıklayınca konum seçme modu açık mı (imleç değişir). */
   placing?: boolean
 }
@@ -48,7 +50,15 @@ function FitBounds({ bounds }: { bounds?: [number, number][] }) {
   return null
 }
 
-export default function MapView({ children, onMapClick, onCenterChange, fitBounds, placing }: Props) {
+function FlyTo({ target }: { target?: { lat: number; lng: number; token: number } | null }) {
+  const map = useMap()
+  useEffect(() => {
+    if (target) map.flyTo([target.lat, target.lng], Math.max(map.getZoom(), 16), { duration: 0.8 })
+  }, [target?.token]) // eslint-disable-line react-hooks/exhaustive-deps
+  return null
+}
+
+export default function MapView({ children, onMapClick, onCenterChange, fitBounds, flyTo, placing }: Props) {
   const { t } = useTranslation()
   return (
     <div
@@ -72,6 +82,7 @@ export default function MapView({ children, onMapClick, onCenterChange, fitBound
         <ZoomControl position="bottomleft" />
         <ClickAndCenter onMapClick={onMapClick} onCenterChange={onCenterChange} />
         <FitBounds bounds={fitBounds} />
+        <FlyTo target={flyTo} />
         {children}
       </MapContainer>
     </div>

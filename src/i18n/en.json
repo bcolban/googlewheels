@@ -23,6 +23,12 @@
     "geoError": "Could not get your location",
     "coloredByReports": "Route colored by nearby obstacle reports"
   },
+  "locate": {
+    "button": "Show my location",
+    "denied": "Location permission denied. You can allow it in browser settings.",
+    "unsupported": "This device/browser does not support location.",
+    "unavailable": "Location unavailable right now, please try again."
+  },
   "layer": {
     "title": "Accessibility layer",
     "on": "On",

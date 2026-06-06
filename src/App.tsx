@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ThemeProvider, CssBaseline } from '@mui/material'
-import { Fab, Snackbar, Alert, Box, Typography } from '@mui/material'
+import { Fab, Snackbar, Alert, Box, Typography, Tooltip } from '@mui/material'
 import AddLocationAlt from '@mui/icons-material/AddLocationAlt'
+import MyLocation from '@mui/icons-material/MyLocation'
 import { useTranslation } from 'react-i18next'
 
 import { buildTheme } from './theme/theme'
@@ -9,6 +10,8 @@ import MapView, { ISTANBUL_CENTER } from './components/map/MapView'
 import LivingRoute from './components/map/LivingRoute'
 import ReportMarkers from './components/map/ReportMarkers'
 import ElevatorMarkers from './components/map/ElevatorMarkers'
+import UserLocationMarker from './components/map/UserLocationMarker'
+import { useGeolocation } from './hooks/useGeolocation'
 import TopBar from './components/layout/TopBar'
 import IntroDialog from './components/layout/IntroDialog'
 import RoutePanel from './components/panels/RoutePanel'
@@ -43,8 +46,14 @@ export default function App() {
   const [directionsOpen, setDirectionsOpen] = useState(false)
   const [elevator, setElevator] = useState<ElevatorPoint | null>(null)
   const [elevatorOpen, setElevatorOpen] = useState(false)
-  const [snack, setSnack] = useState<string | null>(null)
+  const [snack, setSnack] = useState<{ msg: string; sev: 'success' | 'error' } | null>(null)
   const [refreshKey, setRefreshKey] = useState(0)
+
+  // Canlı konum
+  const geo = useGeolocation()
+  const [flyTo, setFlyTo] = useState<{ lat: number; lng: number; token: number } | null>(null)
+  const flyToken = useRef(0)
+  const wantRecenter = useRef(false)
 
   // A11y tercihleri (kalıcı)
   const [fontScale, setFontScale] = useState<FontScale>(
@@ -90,10 +99,33 @@ export default function App() {
       const saved = await addReport(input)
       setReports((prev) => [saved, ...prev])
       setReportOpen(false)
-      setSnack(t('report.success'))
+      setSnack({ msg: t('report.success'), sev: 'success' })
     },
     [t],
   )
+
+  // Canlı konum butonu: konum varsa oraya uç, yoksa takibi başlat ve ilk sabitlemede uç
+  const locate = useCallback(() => {
+    if (geo.position) {
+      flyToken.current += 1
+      setFlyTo({ lat: geo.position.lat, lng: geo.position.lng, token: flyToken.current })
+    } else {
+      wantRecenter.current = true
+      geo.start()
+    }
+  }, [geo])
+
+  useEffect(() => {
+    if (geo.position && wantRecenter.current) {
+      wantRecenter.current = false
+      flyToken.current += 1
+      setFlyTo({ lat: geo.position.lat, lng: geo.position.lng, token: flyToken.current })
+    }
+  }, [geo.position])
+
+  useEffect(() => {
+    if (geo.error) setSnack({ msg: t(`locate.${geo.error}`), sev: 'error' })
+  }, [geo.error, t])
 
   const openRoute = useCallback(() => {
     setRoute(taksimGalataRoute)
@@ -109,11 +141,13 @@ export default function App() {
       <Box sx={{ position: 'fixed', inset: 0 }}>
         <MapView
           fitBounds={fitBounds}
+          flyTo={flyTo}
           placing={placing}
           onCenterChange={(lat, lng) => setCenter({ lat, lng })}
         >
           {layerOn && route && <LivingRoute route={route} />}
           {layerOn && <ReportMarkers reports={visibleReports} />}
+          {geo.position && <UserLocationMarker position={geo.position} />}
           {layerOn && route && (
             <ElevatorMarkers
               elevators={route.elevators}
@@ -158,6 +192,28 @@ export default function App() {
               setElevatorOpen(true)
             }}
           />
+        )}
+
+        {/* Canlı konum (mavi nokta) butonu */}
+        {!placing && (
+          <Tooltip title={t('locate.button')} placement="left">
+            <Fab
+              size="medium"
+              color={geo.tracking ? 'primary' : 'default'}
+              onClick={locate}
+              aria-label={t('locate.button')}
+              aria-pressed={geo.tracking}
+              sx={{
+                position: 'absolute',
+                zIndex: 1000,
+                right: 16,
+                bottom: { xs: 84, md: 96 },
+                bgcolor: geo.tracking ? undefined : '#fff',
+              }}
+            >
+              <MyLocation sx={{ color: geo.tracking ? '#fff' : '#1a73e8' }} />
+            </Fab>
+          </Tooltip>
         )}
 
         {/* Engel bildir — büyük, sabit FAB (konum seçme veya form açıkken gizlenir) */}
@@ -231,8 +287,8 @@ export default function App() {
         onClose={() => setSnack(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert severity="success" onClose={() => setSnack(null)} sx={{ fontWeight: 500 }}>
-          {snack}
+        <Alert severity={snack?.sev ?? 'success'} onClose={() => setSnack(null)} sx={{ fontWeight: 500 }}>
+          {snack?.msg}
         </Alert>
       </Snackbar>
     </ThemeProvider>

@@ -34,6 +34,8 @@ Bu demo, o konsepti gerçekten denenebilir hâle getirir: harita üzerinde renk 
 anlık engel bildirimi ve asansör doğrulama akışı çalışır durumdadır.
 
 ### Özellikler
+- 📡 **Canlı konum** — "Konumumu göster" ile cihazının anlık konumu haritada mavi nokta +
+  doğruluk halkasıyla canlı izlenir (HTTPS üzerinde, izinle).
 - 🧭 **Kendi rotanı oluştur** — Adres/yer ara (OpenStreetMap Nominatim) veya konumunu kullan;
   başlangıç–varış seç, gerçek yaya yol ağını izleyen rota (OSRM) anında çizilir.
 - 🟢🟡🔴 **Yaşayan Rotalar** — Rota çizgisi yolun fiziksel erişilebilirliğine göre renk değiştirir
@@ -91,6 +93,8 @@ elevators, illegally parked cars — and turns the map into a **solidarity platf
 help each other.
 
 ### Features
+- 📡 **Live location** — "Show my location" tracks your device's live position as a blue dot
+  with an accuracy ring (over HTTPS, with permission).
 - 🧭 **Create your own route** — search a place (OpenStreetMap Nominatim) or use your location,
   pick start & destination, and a real pedestrian route (OSRM) is drawn instantly.
 - 🟢🟡🔴 **Living Routes** — the path is colored by physical accessibility, **automatically tinted
