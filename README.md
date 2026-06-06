@@ -20,6 +20,16 @@ _A crowdsourced accessibility map layer for wheelchair users_
 
 ---
 
+## 🎬 Rota oluşturma videosu / Demo
+
+Adım adım nasıl rota oluşturulacağını gösteren kısa video:
+
+<video src="https://github.com/bcolban/googlewheels/raw/main/docs/rota-olusturma.mp4" controls width="720"></video>
+
+▶️ Oynatılmazsa indir/izle: **[docs/rota-olusturma.mp4](docs/rota-olusturma.mp4)**
+
+---
+
 ## 🇹🇷 Türkçe
 
 ### Proje hakkında
