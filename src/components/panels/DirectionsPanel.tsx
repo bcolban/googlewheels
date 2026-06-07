@@ -204,6 +204,9 @@ export default function DirectionsPanel({ reports, mapCenter, onClose, onRoute }
         <Typography variant="caption" color="text.secondary">
           {t('directions.coloredByReports')}
         </Typography>
+        <Alert severity="info" icon={false} sx={{ py: 0, fontSize: '0.78rem' }}>
+          {t('directions.rightClickTip')}
+        </Alert>
       </Stack>
     </Paper>
   )

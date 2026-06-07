@@ -21,7 +21,10 @@
     "typeMore": "En az 3 harf yaz",
     "error": "Rota oluşturulamadı, tekrar dene",
     "geoError": "Konum alınamadı",
-    "coloredByReports": "Rota, yakındaki engel bildirimlerine göre renklendi"
+    "coloredByReports": "Rota, yakındaki engel bildirimlerine göre renklendi",
+    "rightClickTip": "İpucu: Haritaya sağ tıklayarak da hedef seçebilirsin.",
+    "pickedTarget": "Seçilen hedef",
+    "targetSet": "Hedef belirlendi — rota çiziliyor…"
   },
   "locate": {
     "button": "Konumumu göster",

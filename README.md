@@ -48,6 +48,8 @@ anlık engel bildirimi ve asansör doğrulama akışı çalışır durumdadır.
   doğruluk halkasıyla canlı izlenir (HTTPS üzerinde, izinle).
 - 🧭 **Kendi rotanı oluştur** — Adres/yer ara (OpenStreetMap Nominatim) veya konumunu kullan;
   başlangıç–varış seç, gerçek yaya yol ağını izleyen rota (OSRM) anında çizilir.
+- 🖱️ **Haritaya sağ tıkla → hedef** — Sağ tıklanan nokta varış olur; başlangıç canlı konumun
+  (yoksa haritanın ortası) alınır ve rota otomatik çizilir.
 - 🟢🟡🔴 **Yaşayan Rotalar** — Rota çizgisi yolun fiziksel erişilebilirliğine göre renk değiştirir
   (yeşil: tam erişilebilir, sarı: dikkatli geç, kırmızı: riskli/geçilemez) — rota üzerindeki
   **engel bildirimlerine göre otomatik renklenir**. Renk asla tek sinyal değildir; her zaman
@@ -107,6 +109,8 @@ help each other.
   with an accuracy ring (over HTTPS, with permission).
 - 🧭 **Create your own route** — search a place (OpenStreetMap Nominatim) or use your location,
   pick start & destination, and a real pedestrian route (OSRM) is drawn instantly.
+- 🖱️ **Right-click the map → destination** — the right-clicked point becomes the destination;
+  the start is your live location (or the map center) and the route is drawn automatically.
 - 🟢🟡🔴 **Living Routes** — the path is colored by physical accessibility, **automatically tinted
   by nearby obstacle reports**; color is never the only signal (always paired with icon + label).
 - 📍 **Instant obstacle reporting** with an icon set + free-text note.

@@ -21,7 +21,10 @@
     "typeMore": "Type at least 3 letters",
     "error": "Could not create route, try again",
     "geoError": "Could not get your location",
-    "coloredByReports": "Route colored by nearby obstacle reports"
+    "coloredByReports": "Route colored by nearby obstacle reports",
+    "rightClickTip": "Tip: right-click the map to set a destination.",
+    "pickedTarget": "Selected destination",
+    "targetSet": "Destination set — drawing route…"
   },
   "locate": {
     "button": "Show my location",

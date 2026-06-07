@@ -24,6 +24,7 @@ import type { ElevatorPoint, Report, SeedRoute } from './types'
 import { taksimGalataRoute } from './data/seedRoutes'
 import { flattenPoints } from './lib/geo'
 import { addReport, fetchReports, type DataMode } from './lib/reportsRepo'
+import { fetchWalkingRoute, buildRoute, type Place as GeoPlace } from './lib/routing'
 
 export type FontScale = 'small' | 'normal' | 'large'
 const FONT_PX: Record<FontScale, number> = { small: 14, normal: 16, large: 19 }
@@ -132,6 +133,25 @@ export default function App() {
     setIntroOpen(false)
   }, [])
 
+  // Haritaya sağ tıkla → o nokta hedef olsun, başlangıç canlı konum (yoksa harita merkezi)
+  const routeToPoint = useCallback(
+    async (lat: number, lng: number) => {
+      const start: GeoPlace = geo.position
+        ? { label: t('directions.myLocation'), lat: geo.position.lat, lng: geo.position.lng }
+        : { label: t('directions.mapCenter'), lat: center.lat, lng: center.lng }
+      const to: GeoPlace = { label: t('directions.pickedTarget'), lat, lng }
+      setDirectionsOpen(false)
+      setSnack({ msg: t('directions.targetSet'), sev: 'success' })
+      try {
+        const osrm = await fetchWalkingRoute(start, to)
+        setRoute(buildRoute(start, to, osrm, reports))
+      } catch {
+        setSnack({ msg: t('directions.error'), sev: 'error' })
+      }
+    },
+    [geo.position, center, reports, t],
+  )
+
   const visibleReports = layerOn ? reports : []
   const fitBounds = route ? flattenPoints(route.segments) : undefined
 
@@ -144,6 +164,9 @@ export default function App() {
           flyTo={flyTo}
           placing={placing}
           onCenterChange={(lat, lng) => setCenter({ lat, lng })}
+          onMapRightClick={(lat, lng) => {
+            if (!placing) void routeToPoint(lat, lng)
+          }}
         >
           {layerOn && route && <LivingRoute route={route} />}
           {layerOn && <ReportMarkers reports={visibleReports} />}

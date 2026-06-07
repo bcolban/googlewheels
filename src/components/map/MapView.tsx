@@ -10,6 +10,8 @@ export const ISTANBUL_CENTER: LatLngExpression = [41.0308, 28.979]
 interface Props {
   children?: React.ReactNode
   onMapClick?: (lat: number, lng: number) => void
+  /** Haritaya sağ tıklayınca (hedef konum belirleme). */
+  onMapRightClick?: (lat: number, lng: number) => void
   /** Harita kaydıkça merkez koordinatını bildirir (rapor için "ortayı kullan"). */
   onCenterChange?: (lat: number, lng: number) => void
   /** Harita bu noktaya/sınıra uçar (rota seçilince). */
@@ -23,14 +25,21 @@ interface Props {
 /** Tıklama ve merkez değişimini dışarıya bildirir. */
 function ClickAndCenter({
   onMapClick,
+  onMapRightClick,
   onCenterChange,
 }: {
   onMapClick?: (lat: number, lng: number) => void
+  onMapRightClick?: (lat: number, lng: number) => void
   onCenterChange?: (lat: number, lng: number) => void
 }) {
   useMapEvents({
     click(e) {
       onMapClick?.(e.latlng.lat, e.latlng.lng)
+    },
+    contextmenu(e) {
+      // Tarayıcının kendi sağ-tık menüsünü engelle, hedef konumu bildir
+      e.originalEvent?.preventDefault()
+      onMapRightClick?.(e.latlng.lat, e.latlng.lng)
     },
     moveend(e) {
       const c = e.target.getCenter()
@@ -58,7 +67,7 @@ function FlyTo({ target }: { target?: { lat: number; lng: number; token: number 
   return null
 }
 
-export default function MapView({ children, onMapClick, onCenterChange, fitBounds, flyTo, placing }: Props) {
+export default function MapView({ children, onMapClick, onMapRightClick, onCenterChange, fitBounds, flyTo, placing }: Props) {
   const { t } = useTranslation()
   return (
     <div
@@ -80,7 +89,7 @@ export default function MapView({ children, onMapClick, onCenterChange, fitBound
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         <ZoomControl position="bottomleft" />
-        <ClickAndCenter onMapClick={onMapClick} onCenterChange={onCenterChange} />
+        <ClickAndCenter onMapClick={onMapClick} onMapRightClick={onMapRightClick} onCenterChange={onCenterChange} />
         <FitBounds bounds={fitBounds} />
         <FlyTo target={flyTo} />
         {children}
