@@ -59,6 +59,32 @@ function FitBounds({ bounds }: { bounds?: [number, number][] }) {
   return null
 }
 
+/**
+ * Açılışta Leaflet konteyner boyutunu yanlış ölçebildiği için (gri boşluklar / tüm dünya
+ * görünümü) birkaç tick sonra invalidateSize çağırır ve İstanbul görünümünü garantiler.
+ * Ayrıca pencere boyutu değişince haritayı yeniden ölçer.
+ */
+function ResizeFix() {
+  const map = useMap()
+  useEffect(() => {
+    let first = true
+    const fix = () => {
+      map.invalidateSize()
+      // İlk yerleşimde yanlış (çok düşük) zoom oluştuysa İstanbul'a sabitle
+      if (first && map.getZoom() < 9) map.setView(ISTANBUL_CENTER, 14)
+      first = false
+    }
+    const timers = [0, 250, 600].map((d) => window.setTimeout(fix, d))
+    window.addEventListener('resize', fix)
+    map.whenReady(fix)
+    return () => {
+      timers.forEach(clearTimeout)
+      window.removeEventListener('resize', fix)
+    }
+  }, [map])
+  return null
+}
+
 function FlyTo({ target }: { target?: { lat: number; lng: number; token: number } | null }) {
   const map = useMap()
   useEffect(() => {
@@ -89,6 +115,7 @@ export default function MapView({ children, onMapClick, onMapRightClick, onCente
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         <ZoomControl position="bottomleft" />
+        <ResizeFix />
         <ClickAndCenter onMapClick={onMapClick} onMapRightClick={onMapRightClick} onCenterChange={onCenterChange} />
         <FitBounds bounds={fitBounds} />
         <FlyTo target={flyTo} />
