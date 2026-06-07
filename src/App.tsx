@@ -93,6 +93,14 @@ export default function App() {
 
   useEffect(() => {
     void loadReports()
+    // Başkalarının bildirimleri otomatik görünsün diye periyodik yenile (canlı modda)
+    const id = window.setInterval(() => void loadReports(), 25000)
+    const onFocus = () => void loadReports()
+    window.addEventListener('focus', onFocus)
+    return () => {
+      window.clearInterval(id)
+      window.removeEventListener('focus', onFocus)
+    }
   }, [loadReports])
 
   const handleSubmitReport = useCallback(
